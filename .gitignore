@@ -1,3 +1,9 @@
+*.jpg
+*.mp4
+*.flv
+*.JPEG
+*.pdf
+*.mpg
 backupdataset/
 allimages/
 all/
@@ -14,9 +20,3 @@ uglies/
 n04530566/
 windows_v1.7.0/
 yolo.pdf
-*.jpg
-*.mp4
-*.flv
-*.JPEG
-*.pdf
-*.mpg
