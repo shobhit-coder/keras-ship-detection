@@ -18,7 +18,7 @@ def prep_data(raw, train_size, val_size):
 
 # fashion_file = "../input/fashionmnist/fashion-mnist_train.csv"
 # fashion_data = np.loadtxt(fashion_file, skiprows=1, delimiter=',')
-# x, y = prep_data(fashion_data, train_size=50000, val_size=5000)
+# x, y = prep_data(fashion_data, train_size=50000, val_size=5000) 
 
 
 def prepare():

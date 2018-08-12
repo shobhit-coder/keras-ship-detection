@@ -40,7 +40,7 @@ while True:
     for (x,y,w,h) in ships:
         
         xa.append(x)
-        ya.append(y)
+        ya.append(y) 
         
         cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
 

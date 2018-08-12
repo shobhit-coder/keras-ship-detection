@@ -2,6 +2,8 @@
 # from sklearn.model_selection import train_test_split
 # from tensorflow.python import keras
 import os
+import cv2
+import numpy as np
 
 img_rows, img_cols = 28, 28
 num_classes = 10
@@ -26,9 +28,8 @@ def prepare():
 		if filename.endswith(".JPEG"):
 			if not os.path.exists('allimages/'+filename.split('.')[0]+str('.xml')):
 				os.remove('allimages/'+filename)
-				print('deleted'+filename)
-import cv2
-import numpy as np
+				print('deleted'+filename) 
+
 def converttonumpy():
 	ctr=0
 	imarray=np.zeros((239,size,size))
