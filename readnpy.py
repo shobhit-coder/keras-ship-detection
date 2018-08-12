@@ -1,3 +1,3 @@
 import numpy as np 
-x=np.load('a.npy')
+x=np.load('new_outnpy1fixed.npy')
 print(x)

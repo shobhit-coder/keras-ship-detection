@@ -32,31 +32,45 @@ import xml.etree.ElementTree as ET
 import numpy as np
 def converttonumpy():
 	ctr=0
-	imarray=np.zeros((239,100,100))
-	outputarray=np.zeros((239,4))
-	for filename in os.listdir('allimages'):
-		if filename.endswith(".jpg"):
+	imarray=np.zeros((796,100,100))
+	outputarray=np.zeros((796,4))
+	for filename in os.listdir('resizedall'):
+		if filename.endswith(".JPEG"):
 			
-			im = cv2.imread('allimages/'+filename)
+			im = cv2.imread('resizedall/'+filename)
 			im=im[:,:,0]
 			imarray[ctr]=im
-			
-			tree = ET.parse('allimages/'+str(filename.split('.')[0]+'.xml'))
+			# print(filename)
+			tree = ET.parse('resizedall/'+str(filename.split('.')[0]+'.xml'))
 			root = tree.getroot()
-			outputarray[ctr][0]=root[5][4][0].text#=str(int(int(root[5][4][0].text)/img_x_size*100))
-			outputarray[ctr][1]=root[5][4][1].text#=str(int(int(root[5][4][1].text)/img_y_size*100))
-			outputarray[ctr][2]=root[5][4][2].text#=str(int(int(root[5][4][2].text)/img_x_size*100))
-			outputarray[ctr][3]=root[5][4][3].text#=str(int(int(root[5][4][3].text)/img_y_size*100))
+			if root[2].tag=='source':
+				img_x_size=int(root[3][0].text)
+				img_y_size=int(root[3][1].text)
+				outputarray[ctr][0]=str(int(int(root[5][4][0].text)/img_x_size*100))
+				outputarray[ctr][1]=str(int(int(root[5][4][1].text)/img_y_size*100))
+				outputarray[ctr][2]=str(int(int(root[5][4][2].text)/img_x_size*100))
+				outputarray[ctr][3]=str(int(int(root[5][4][3].text)/img_y_size*100))
+			else:
+				img_x_size=int(root[4][0].text)
+				img_y_size=int(root[4][1].text)
+				outputarray[ctr][0]=str(int(int(root[6][4][0].text)/img_x_size*100))
+				outputarray[ctr][1]=str(int(int(root[6][4][1].text)/img_y_size*100))
+				outputarray[ctr][2]=str(int(int(root[6][4][2].text)/img_x_size*100))
+				outputarray[ctr][3]=str(int(int(root[6][4][3].text)/img_y_size*100))
+				# outputarray[ctr][0]=root[6][4][0].text#=str(int(int(root[5][4][0].text)/img_x_size*100))
+				# outputarray[ctr][1]=root[6][4][1].text#=str(int(int(root[5][4][1].text)/img_y_size*100))
+				# outputarray[ctr][2]=root[6][4][2].text#=str(int(int(root[5][4][2].text)/img_x_size*100))
+				# outputarray[ctr][3]=root[6][4][3].text#=str(int(int(root[5][4][3].text)/img_y_size*100))
 			ctr+=1
 			print(filename)
 
 
 
 	return outputarray,imarray
-# outarr,inarr=converttonumpy()
+outarr,inarr=converttonumpy()
 # print(outarr)
-# np.save('innpy.npy',inarr)
-# np.save('outnpy.npy', outarr)
+np.save('newdata_innpy.npy',inarr)
+np.save('newdata_outnpy.npy', outarr)
 
 			# im.append()
 			# print(im.shape)
@@ -78,12 +92,12 @@ def makedata1():
 			os.remove('allimages/'+filename)
 
 def resize():
-	image=cv2.imread('shipcheck.jpg')
-	print(str(image.shape[:2])+' '+str(filename))
-	# for filename in os.listdir('allimages'):
-	# 	if filename.endswith(".jpg"):
-	# 		image=cv2.imread('allimages/'+filename)
-	# 		print(str(image.shape[:2])+' '+str(filename))
+	# image=cv2.imread('shipcheck.jpg')
+	# print(str(image.shape[:2])+' '+str(filename))
+	for filename in os.listdir('resizedall'):
+		if filename.endswith(".JPEG"):
+			image=cv2.imread('resizedall/'+filename)
+			# print(str(image.shape[:2])+' '+str(filename))
 # resize()
 #pic=pic[:][:][0]
 #print(pic.shape)

@@ -6,17 +6,18 @@ from keras.layers import Dense
 import numpy as np
 img_rows=100
 img_cols=100
-num_images=239
-x=np.load('innpy.npy')
-x=x.reshape(num_images, img_rows, img_cols, 1)
+num_images=730
+x=np.load('new_innpy1fixed.npy')
+# print(x.shape)
+# x=x.reshape(num_images, img_rows, img_cols, 1)
 x=x/255
-y=np.load('outnpy1.npy')
+y=np.load('new_outnpy1fixed.npy')
 
 # Your Code Here
 ship_model = Sequential()
-ship_model.add(Conv2D(100,kernel_size=(2,2),activation='relu',input_shape=((img_rows, img_cols, 1))))
+ship_model.add(Conv2D(20,kernel_size=(2,2),activation='relu',input_shape=((img_rows, img_cols, 1))))
 ship_model.add(MaxPooling2D(pool_size = (2,2)))
-ship_model.add(Conv2D(100,kernel_size=(2,2),activation='relu'))
+ship_model.add(Conv2D(20,kernel_size=(2,2),activation='relu'))
 ship_model.add(MaxPooling2D(pool_size = (2,2)))
 # ship_model.add(Conv2D(100,kernel_size=(3,3),activation='relu'))
 # ship_model.add(Conv2D(100,kernel_size=(3,3),activation='relu'))
@@ -27,7 +28,7 @@ ship_model.add(MaxPooling2D(pool_size = (2,2)))
 # ship_model.add(Conv2D(100,kernel_size=(3,3),activation='relu'))
 ship_model.add(Flatten())
 # ship_model.add(Dense(100,activation='relu'))
-ship_model.add(Dense(100,activation='relu'))
+ship_model.add(Dense(50,activation='relu'))
 # ship_model.add(Dense(60,activation='relu'))
 # ship_model.add(Dense(50,activation='relu'))
 ship_model.add(Dense(4,activation='relu'))
@@ -44,4 +45,4 @@ ship_model.fit(x, y,
           epochs=20,
           validation_split = 0.2)
 
-ship_model.save('trainedmodel3pooled.h5')
+ship_model.save('12augtrainedmodel.h5')
