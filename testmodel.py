@@ -13,3 +13,11 @@ x=x.reshape(1, 100, 100, 1)
 x=x/255
 
 print(model.predict(x))
+
+cap = cv2.VideoCapture('sample8.mpg')
+while(1):
+
+    # Take each frame
+    _, frame = cap.read()
+    frame = resize(frame, (200,200))
+    frame = cv2.medianBlur(frame, 3)#ksize[, dst])
