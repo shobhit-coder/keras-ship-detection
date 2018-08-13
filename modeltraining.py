@@ -11,35 +11,35 @@ from collections import namedtuple
 # import cv2
 
 
-def bb_intersection_over_union(boxA1, boxB1):
+def bb_intersection_over_union(boxA, boxB):
     # with tf.Session() as sess:
     #     print("hello\n\n---------\n\n\n")
-    #     print(type(sess.run(boxA1)))
-    x1=boxA1[0]
-    y1=boxA1[1]
-    w1=boxA1[2]
-    h1=boxA1[3]
+    #     print(type(sess.run(boxA)))
+    # x1=boxA1[0]
+    # y1=boxA1[1]
+    # w1=boxA1[2]
+    # h1=boxA1[3]
 
-    x2=boxB1[0]
-    y2=boxB1[1]
-    w2=boxB1[2]
-    h2=boxB1[3]
+    # x2=boxB1[0]
+    # y2=boxB1[1]
+    # w2=boxB1[2]
+    # h2=boxB1[3]
 
 
-    boxA=[0,0,0,0]
-    boxA[0]=x1-w1/2
-    boxA[1]=y1-h1/2
-    boxA[2]=x1+w1/2
-    boxA[3]=y1+h1/2
+    # boxA=[0,0,0,0]
+    # boxA[0]=x1-w1/2
+    # boxA[1]=y1-h1/2
+    # boxA[2]=x1+w1/2
+    # boxA[3]=y1+h1/2
 
-    boxB=[0,0,0,0]
-    boxB[0]=x2-w2/2
-    boxB[1]=y2-h2/2
-    boxB[2]=x2+w2/2
-    boxB[3]=y2+h2/2
+    # boxB=[0,0,0,0]
+    # boxB[0]=x2-w2/2
+    # boxB[1]=y2-h2/2
+    # boxB[2]=x2+w2/2
+    # boxB[3]=y2+h2/2
 
-    print(type(boxA[0]))
-    print(type(boxB[0]))
+    # print(type(boxA[0]))
+    # print(type(boxB[0]))
 	# determine the (x, y)-coordinates of the intersection rectangle
     xA = max(boxA[0], boxB[0])
     yA = max(boxA[1], boxB[1])
@@ -68,11 +68,11 @@ def bb_intersection_over_union(boxA1, boxB1):
 img_rows=400
 img_cols=400
 num_images=730
-x=np.load('new_innpy1fixed.npy')
+x=np.load('400x400_innpy.npy')
 # print(x.shape)
 # x=x.reshape(num_images, img_rows, img_cols, 1)
 x=x/255
-y=np.load('new_outnpy1fixed.npy')
+y=np.load('400x400_outnpy_fixed_with_diff_format.npy')
 
 # Your Code Here
 ship_model = Sequential()
