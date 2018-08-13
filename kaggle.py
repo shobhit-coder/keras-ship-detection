@@ -108,23 +108,46 @@ def resize():
 # cv2.destroyAllWindows()
 
 
-# from tensorflow.python import keras
-# from tensorflow.python.keras.models import Sequential
-# from tensorflow.python.keras.layers import Dense, Flatten, Conv2D
+from tensorflow.python import keras
+from tensorflow.python.keras.models import Sequential
+from tensorflow.python.keras.layers import Dense, Flatten, Conv2D
 
 # # Your Code Here
-# fashion_model = Sequential()
-# fashion_model.add(Conv2D(12,kernel_size=(3,3),activation='relu',input_shape=((img_rows, img_cols, 1))))
-# fashion_model.add(Conv2D(2,kernel_size=(3,3),activation='relu'))
-# fashion_model.add(Flatten())
-# fashion_model.add(Dense(100,activation='relu'))
-# fashion_model.add(Dense(num_classes,activation='softmax'))
+fashion_model = Sequential()
+fashion_model.add(Conv2D(12,kernel_size=(3,3),activation='relu',input_shape=((img_rows, img_cols, 1))))
+fashion_model.add(Conv2D(2,kernel_size=(3,3),activation='relu'))
+fashion_model.add(Flatten())
+fashion_model.add(Dense(100,activation='relu'))
+fashion_model.add(Dense(num_classes,activation='softmax'))
 
-# fashion_model.compile(loss=keras.losses.categorical_crossentropy,
-#               optimizer='adam',
-#               metrics=['accuracy'])
+fashion_model.compile(loss=bb_intersection_over_union,
+              optimizer='adam',
+              metrics=['accuracy'])
 
-# fashion_model.fit(x, y,
-#           batch_size=100,
-#           epochs=4,
-#           validation_split = 0.2)
+fashion_model.fit(x, y,
+          batch_size=100,
+          epochs=4,
+          validation_split = 0.2)
+
+def bb_intersection_over_union(y_true, y_pred):
+	# determine the (x, y)-coordinates of the intersection rectangle
+	xA = max(y_true[0], y_pred[0])
+	yA = max(y_true[1], y_pred[1])
+	xB = min(y_true[2], y_pred[2])
+	yB = min(y_true[3], y_pred[3])
+ 
+	# compute the area of intersection rectangle
+	interArea = max(0, xB - xA + 1) * max(0, yB - yA + 1)
+ 
+	# compute the area of both the prediction and ground-truth
+	# rectangles
+	y_trueArea = (y_true[2] - y_true[0] + 1) * (y_true[3] - y_true[1] + 1)
+ 	y_predArea =  (y_pred[2] - y_pred[0] + 1) *  (y_pred[3] - y_pred[1] + 1)
+ 
+	# compute the intersection over union by taking the intersection
+	# area and dividing it by the sum of prediction + ground-truth
+	# areas - the interesection area
+	iou = interArea / float(y_trueArea + y_predArea - interArea)
+ 
+	# return the intersection over union value
+	return iou
