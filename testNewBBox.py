@@ -6,13 +6,10 @@ import os
 # im2= cv2.resize(im, (100, 100))
 # cv2.imwrite('shiptest.jpg',im2)
 # print('changed '+filename)
-for filename in os.listdir('resizedall'):
+for filename in os.listdir('400x400'):
     if filename.endswith('.JPEG'):
-        im = cv2.imread('resizedall/'+filename)
+        im = cv2.imread('400x400/'+filename)
         im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-        im2= cv2.resize(im, (100, 100))
-        cv2.imwrite('resizedall/'+filename,im2)
+        im2= cv2.resize(im, (400, 400))
+        cv2.imwrite('400x400/'+filename,im2)
         print('changed '+filename)
-
-def draw_rectaangle(image , x1 , x2 , y1 , y2 ):
-    cv2.rectangle(img,(x1,y1),(x2,y2),(0,0,255),15)

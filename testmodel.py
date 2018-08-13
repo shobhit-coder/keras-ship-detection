@@ -15,7 +15,6 @@ from keras.layers import Dense
 import keras
 import numpy as np
 import cv2
-from cv2 import resize
 
 model=keras.models.load_model('12augtrainedmodel.h5')
 
@@ -25,11 +24,21 @@ model=keras.models.load_model('12augtrainedmodel.h5')
 
 # print(model.predict(x))
 
-cap = cv2.VideoCapture('sample8.mpg')
+cap = cv2.VideoCapture('stuff/sample8.mpg')
 while(1):
 
     # Take each frame
     _, frame = cap.read()
+
+    print(type(frame))
+    frame = cv2.resize(frame, (100,100))
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    frame = cv2.medianBlur(frame, 3)#ksize[, dst])
+    frame=frame.reshape(1, 100, 100, 1)
+    frame/=255
+    print(model.predict(frame))   
+    #take output of above statement and make rectangle
+
     #print(type(frame))
     
     frame = resize(frame, (100,100))
