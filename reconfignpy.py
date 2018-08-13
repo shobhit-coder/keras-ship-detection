@@ -2,7 +2,7 @@ import numpy as np
 img_rows=400
 img_cols=400
 num_images=796
-y=np.load('400x400_outnpy_fixed.npy')
+y=np.load('400x400_outnpy.npy')
 # print(y) 
 ctr=0
 import os
@@ -27,7 +27,7 @@ for filename in os.listdir('400x400'):
 #     y[num][2]=heightx
 #     y[num][3]=heighty
 
-# np.save('400x400_outnpy_fixed.npy',y)
+np.save('400x400_outnpy_fixed_with_diff_format.npy',y)
 # x=x.reshape(num_images, img_rows, img_cols, 1)
 # np.save('new_innpy1fixed.npy',x)
 # print(x)

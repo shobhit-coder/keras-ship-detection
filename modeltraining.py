@@ -11,10 +11,10 @@ from collections import namedtuple
 # import cv2
 
 
-def bb_intersection_over_union(boxA1, boxB1):
-    with tf.Session() as sess:
-        print("hello\n\n---------\n\n\n")
-        print(type(sess.run(boxA1)))
+def bb_intersection_over_union(boxA, boxB):
+    # with tf.Session() as sess:
+    #     print("hello\n\n---------\n\n\n")
+    #     print(type(sess.run(boxA)))
     # x1=boxA1[0]
     # y1=boxA1[1]
     # w1=boxA1[2]
@@ -68,11 +68,11 @@ def bb_intersection_over_union(boxA1, boxB1):
 img_rows=400
 img_cols=400
 num_images=730
-x=np.load('new_innpy1fixed.npy')
+x=np.load('400x400_innpy.npy')
 # print(x.shape)
 # x=x.reshape(num_images, img_rows, img_cols, 1)
 x=x/255
-y=np.load('new_outnpy1fixed.npy')
+y=np.load('400x400_outnpy_fixed_with_diff_format.npy')
 
 # Your Code Here
 ship_model = Sequential()
