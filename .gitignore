@@ -4,6 +4,7 @@
 *.JPEG
 *.pdf
 *.mpg
+*.png
 backupdataset/
 allimages/
 all/
@@ -25,3 +26,7 @@ resizedall/
 400x400/
 400x400_innpy.npy
 .vscode/
+imagescopy/
+imagescopy1/
+Numpy Images/
+Images(not all with xml)/
